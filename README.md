@@ -8,6 +8,9 @@ A nivel general todos los proyectos son soluciones se han implementado utilizand
 ---
 
 ## 📑 Índice de proyectos
+### 🔹 4VGymAPI:
+- **Descripción:** Proyecto ejemplo de comienzo de trabajo en REST API y datos en memoria  
+- **Conceptos clave:** APIREST, LinQ, Modelos, Controladores, Repositorio arquitectura, css
 
 
 ## 🚀 Cómo ejecutar los proyectos
