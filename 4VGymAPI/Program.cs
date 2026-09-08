@@ -1,4 +1,3 @@
-using _4VGymAPI.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
