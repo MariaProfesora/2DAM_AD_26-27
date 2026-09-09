@@ -21,6 +21,7 @@ Ver/Terminal (tener instalado Git) y ejecutar el siguiente comando:
         Clonar repositorio: git clone: git clone https://github.com/miguel-goyena-cv/2DAM_AD_26-27.git
         Ver rama: git branch -a
         Mostrar archivos modificados: git status
+        Añadir los archivos modificados al área de preparación: git add . (o git add nombre_archivo)
         Hacer commit: git commit -m "mensaje" (tras revisar archivos modificados con git status y prepararlos con git add .)
         Subir los cambios: git push (Si es la primera vez que subes esa rama, ejecuta git push -u origin main)
         Descargar cambios del repositorio remoto: git pull
