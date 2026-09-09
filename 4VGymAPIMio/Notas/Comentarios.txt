@@ -1,0 +1,26 @@
+﻿Cambiar de repositorio:
+  Desde VS: Ver/Terminal (tener instalado Git) y ejecutar el siguiente comando:
+     git remote set-url origin https://github.com/MariaProfesora/2DAM_AD_26-27.git
+
+Ver/Terminal (tener instalado Git) y ejecutar el siguiente comando:
+  Verificar la URL del repositorio remoto:
+     git remote -v Aparece 
+     origin https://github.com/miguel-goyena-cv/2DAM_AD_26-27.git (fetch: dirección de descarga) 
+     origin https://github.com/miguel-goyena-cv/2DAM_AD_26-27.git (push: dirección de subida al hacer git push) 
+  Modificar la URL del repositorio remoto:
+     git remote set-url origin https://github.com/MariaProfesora/2DAM_AD_26-27.git
+  Subir los cambios al repositorio remoto:
+     git branch -M main
+     git push -u origin main
+    
+    Si no funciona, 
+        borrar el repositorio remoto y volver a crear uno nuevo con el mismo nombre en GitHub. Luego ejecutar: git remote set-url origin
+        forzar la subida con git push -u origin main --force
+
+Crear Carpetas para meter las clases: Controladores, Modelos, Repositorios, Servicios, Vistas, Utilidades
+
+Inglés--> españolde ayudas
+Descargar archivos de IntelliSense de .NET localizados  ESPAÑOL
+Descomprimir el archivo descargado y copiar el contenido en la carpeta: 
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\10.0.12\ref\net10.0\es
+
