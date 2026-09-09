@@ -1,4 +1,6 @@
 
+using _4VGymAPI.Repositories;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Añadir los controladores
@@ -6,6 +8,11 @@ builder.Services.AddControllers();
 
 // Añadir el soporte a OpenAPI:  https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+// AÑDIR ESTO
+// // Inyección de la clase de repositorio concreta (Singleton para mantener los datos en memoria)
+builder.Services.AddSingleton<InMemoryActivityTypeRepository>();
+
 
 // Contruir la aplicacion
 var app = builder.Build();
