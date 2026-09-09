@@ -7,7 +7,7 @@ Ver/Terminal (tener instalado Git) y ejecutar el siguiente comando:
      git remote -v Aparece 
      origin https://github.com/miguel-goyena-cv/2DAM_AD_26-27.git (fetch: dirección de descarga) 
      origin https://github.com/miguel-goyena-cv/2DAM_AD_26-27.git (push: dirección de subida al hacer git push) 
-  Modificar la URL del repositorio remoto:
+  Modificar la URL del repositorio remoto al proyecto de la profesora:
      git remote set-url origin https://github.com/MariaProfesora/2DAM_AD_26-27.git
   Subir los cambios al repositorio remoto:
      git branch -M main
@@ -16,6 +16,15 @@ Ver/Terminal (tener instalado Git) y ejecutar el siguiente comando:
     Si no funciona, 
         borrar el repositorio remoto y volver a crear uno nuevo con el mismo nombre en GitHub. Luego ejecutar: git remote set-url origin
         forzar la subida con git push -u origin main --force
+
+    Comandos de git:
+        Clonar repositorio: git clone: git clone https://github.com/miguel-goyena-cv/2DAM_AD_26-27.git
+        Ver rama: git branch -a
+        Mostrar archivos modificados: git status
+        Hacer commit: git commit -m "mensaje" (tras revisar archivos modificados con git status y prepararlos con git add .)
+        Subir los cambios: git push (Si es la primera vez que subes esa rama, ejecuta git push -u origin main)
+        Descargar cambios del repositorio remoto: git pull
+
 
 Crear Carpetas para meter las clases: Controladores, Modelos, Repositorios, Servicios, Vistas, Utilidades
 
