@@ -17,7 +17,7 @@ namespace _4VGymAPI.Controllers
         }
         // Un get sencillo podría ser el siguiente(solo puede haber 1 método GET por controlador) :
         //[HttpGet]
-        //public IActionResult GetAll()
+        //public IActionResult GetAll() // IActionResult es una interfaz que representa una respuesta HTTP cualquiera.
         //{
         //    var activityTypes = _repository.GetAll();
         //    return Ok(activityTypes); // Devuelve un código HTTP 200 OK y convierte automáticamente la lista de C# a un formato JSON para el cliente.
@@ -26,9 +26,10 @@ namespace _4VGymAPI.Controllers
         /// GET /activity-types
         /// Devuelve el listado de tipos de actividades de 4VGym.
         /// </summary>
-        [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<ActivityType>), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status400BadRequest)]
+        [HttpGet] // Indica que este método responde a solicitudes HTTP GET.
+        // ProducesResponseType: Indica el tipo de respuesta esperada y el código de estado HTTP correspondiente. Esto ayuda a documentar la API y a generar documentación automática (como Swagger/OpenAPI).
+        [ProducesResponseType(typeof(IEnumerable<ActivityType>), StatusCodes.Status200OK)] // Respuesta exitosa con un listado de tipos de actividades.
+         [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status400BadRequest)]// Respuesta de error con un objeto ErrorResponse.
         public ActionResult<IEnumerable<ActivityType>> FindActivityTypes()
         // ActionResult<T>: Tipo de retorno flexible de Web API. Permite devolver directamente el tipo de dato T (que ASP.NET Core convierte automáticamente a JSON con un código 200 OK) o respuestas con estado HTTP específico (como NotFound(), BadRequest(), etc.).
         {
@@ -45,6 +46,7 @@ namespace _4VGymAPI.Controllers
             {
                 return BadRequest(new ErrorResponse(2, "Any problem in the Server" ));
             }
+           
         }
     }
 
