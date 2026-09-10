@@ -4,42 +4,25 @@ namespace _4VGymAPI.Repositories
 {
     public class InMemoryActivityTypeRepository
     {
-        // Diccionario interno: Clave = Id (long), Valor = Objeto ActivityType
-        //private readonly Dictionary<long, ActivityType> _activityTypes = new();
-        private Dictionary<long, ActivityType> _activityTypes = new();
+        private List<ActivityType> _activityTypes = new();
         public InMemoryActivityTypeRepository()
         {
-            // Precargamos algunos datos de prueba
-            SeedData();
+            SeedData(); // Precargamos algunos datos de prueba
         }
-
         private void SeedData()
         {
-            _activityTypes = new Dictionary<long, ActivityType>()
+            _activityTypes = new List<ActivityType>()
             {
-                [10] = new ActivityType { Id = 10, Name = "BodyPump", NumberMonitors = 2 },
-                [20] = new ActivityType { Id = 20, Name = "Spinning", NumberMonitors = 1 },
-                [30] = new ActivityType { Id = 30, Name = "Pilates", NumberMonitors = 1 }
+                new ActivityType (10, "BodyPump",  2 ),
+                new ActivityType ( 20, "Spinning",  1 ),
+                new ActivityType { Id = 30, Name = "Pilates", NumberMonitors = 1 }
             };
-            _activityTypes.Add(40, new ActivityType { Id = 40, Name = "CrossFit", NumberMonitors = 3 });
-
-            //var initialList = new List<ActivityType>
-            //{
-            //    new() { Id = 10, Name = "BodyPump", NumberMonitors = 2 },
-            //    new() { Id = 20, Name = "Spinning", NumberMonitors = 1 },
-            //    new() { Id = 30, Name = "Pilates", NumberMonitors = 1 },
-            //    new() { Id = 40, Name = "CrossFit", NumberMonitors = 3 }
-            //};
-            //foreach (var activity in initialList)0
-            //{
-            //    _activityTypes.Add(activity.Id, activity);
-            //}
+            _activityTypes.Add(new ActivityType ( 40, "CrossFit", 3);
         }
-
         // Método para obtener todos los tipos de actividades
-        public IEnumerable<ActivityType> GetAll()
+        public IEnumerable<ActivityType> GetAll() // Al declarar como tipo de retorno IEnumerable<ActivityType>, la vista externa solo puede leer los datos (recorrerlos con un foreach o filtrarlos con LINQ), evitando que se agreguen o eliminen elementos de la lista privada desde fuera
         {
-            return _activityTypes.Values;
+            return _activityTypes;
         }
     }
 }

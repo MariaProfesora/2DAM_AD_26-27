@@ -13,5 +13,15 @@ namespace _4VGymAPI.Models
         [JsonPropertyName("number-monitors")]
         public int NumberMonitors { get; set; }
 
+
+        public ActivityType()
+        {
+        }
+        public ActivityType(long id, string name, int numberMonitors)
+        {
+            Id = id;
+            Name = name;
+            NumberMonitors = numberMonitors;
+        }
     }
 }
