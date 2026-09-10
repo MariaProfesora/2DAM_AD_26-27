@@ -16,12 +16,12 @@ namespace _4VGymAPI.Controllers
             _repository = repository;
         }
         // Un get sencillo podría ser el siguiente(solo puede haber 1 método GET por controlador) :
-        [HttpGet]
-        public IActionResult GetAll()
-        {
-            var activityTypes = _repository.GetAll();
-            return Ok(activityTypes); // Devuelve un código HTTP 200 OK y convierte automáticamente la lista de C# a un formato JSON para el cliente.
-        }
+        //[HttpGet]
+        //public IActionResult GetAll()
+        //{
+        //    var activityTypes = _repository.GetAll();
+        //    return Ok(activityTypes); // Devuelve un código HTTP 200 OK y convierte automáticamente la lista de C# a un formato JSON para el cliente.
+        //}
         /// <summary>
         /// GET /activity-types
         /// Devuelve el listado de tipos de actividades de 4VGym.
