@@ -17,6 +17,7 @@ A nivel general todos los proyectos son soluciones se han implementado utilizand
 1. Clona este repositorio:
    ```bash
    git clone https://github.com/miguel-goyena-cv/2DAM_AD_26-27.git
+   git clone https://github.com/MariaProfesora/2DAM_AD_26-27.git
    ```
 2. Carga el SLN del proyecto que te interese en Visual Studio  
 3. Ejecuta la solución, siguiendo las intrucciones específicas por proyecto
