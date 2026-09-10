@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace _4VGymAPI.Controllers
 {
-    [ApiController]
-    [Route("activity-types")]
+    [ApiController] //  Activa comportamientos automáticos de API (como validaciones de modelo y respuestas de error estandarizadas).
+    [Route("activity-types")] // Define la URL base para este controlador
     public class ActivityTypesController : ControllerBase
     {
         private readonly InMemoryActivityTypeRepository _repository;
@@ -15,7 +15,13 @@ namespace _4VGymAPI.Controllers
         {
             _repository = repository;
         }
-
+        // Un get sencillo podría ser el siguiente(solo puede haber 1 método GET por controlador) :
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            var activityTypes = _repository.GetAll();
+            return Ok(activityTypes); // Devuelve un código HTTP 200 OK y convierte automáticamente la lista de C# a un formato JSON para el cliente.
+        }
         /// <summary>
         /// GET /activity-types
         /// Devuelve el listado de tipos de actividades de 4VGym.
@@ -28,16 +34,16 @@ namespace _4VGymAPI.Controllers
         {
             try
             {
-                var activityTypes = _repository.GetAll();
-                if (activityTypes == null || !activityTypes.Any())
+                IEnumerable<ActivityType> activityTypes = _repository.GetAll();
+                if (activityTypes == null || activityTypes.Count() == 0)
                 {
-                    return NotFound(new { code = 404, description = "No activity types found" });
-                })
+                    return BadRequest(new ErrorResponse { Code = 1, Description = "No activity types found" });
+                }
                 return Ok(activityTypes);
             }
             catch (Exception)
             {
-                return BadRequest(new { code = 400, description = "Any problem in the Server" });
+                return BadRequest(new ErrorResponse(2, "Any problem in the Server" ));
             }
         }
     }

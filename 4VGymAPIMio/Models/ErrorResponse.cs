@@ -13,5 +13,12 @@ namespace _4VGymAPI.Models
 
         [JsonPropertyName("description")]
         public string Description { get; set; } = string.Empty;
+        public ErrorResponse() { }
+
+        public ErrorResponse(int code, string description)
+        {
+            Code = code;
+            Description = description;
+        }
     }
 }
