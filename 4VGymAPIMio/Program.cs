@@ -12,6 +12,8 @@ builder.Services.AddOpenApi();
 // AÑADIR ESTO
 // // Inyección de la clase de repositorio concreta (Singleton para mantener los datos en memoria)
 builder.Services.AddSingleton<InMemoryActivityTypeRepository>(); // Inyecta la clase de repositorio concreta (InMemoryActivityTypeRepository) como un servicio Singleton, lo que significa que se creará una única instancia de esta clase y se compartirá en toda la aplicación. Esto es útil para mantener los datos en memoria durante la vida de la aplicación, evitando la necesidad de crear múltiples instancias del repositorio y asegurando que todos los controladores y servicios que dependan de este repositorio trabajen con la misma fuente de datos.
+    // Registrar el repositorio como Singleton (o Scoped)
+builder.Services.AddSingleton<InMemoryInstructorRepository>();
 
 
 // Contruir la aplicacion

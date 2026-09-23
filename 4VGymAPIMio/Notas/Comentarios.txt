@@ -29,8 +29,23 @@ Ver/Terminal (tener instalado Git) y ejecutar el siguiente comando:
 
 Crear Carpetas para meter las clases: Controladores, Modelos, Repositorios, Servicios, Vistas, Utilidades
 
-Inglés--> españolde ayudas
+Inglés--> español de ayudas
 Descargar archivos de IntelliSense de .NET localizados  ESPAÑOL
 Descomprimir el archivo descargado y copiar el contenido en la carpeta: 
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\10.0.12\ref\net10.0\es
 
+Diccionario
+  Averiguar si un diccionario contiene una clave: 
+    if (diccionario.ContainsKey(clave))
+
+    if (asignacionAulas.TryGetValue("AULA-101", out Instructor? instructor))
+   
+    Instructor? instructor = asignacionAulas.GetValueOrDefault("AULA-101");
+    if (instructor != null)
+ Recorrer todos los elementos de un diccionario:
+    foreach (KeyValuePair<string, Instructor> instructor in asignacionAulas)
+    {
+        long clave = instructor.Key;
+        Instructor valor = instructor.Value;
+        // Hacer algo con la clave y el valor
+    }
