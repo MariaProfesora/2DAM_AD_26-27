@@ -39,4 +39,51 @@ public class ActivityTypesController : ControllerBase
             return BadRequest(new ErrorResponse(1, "Any problem in the Server"));
         }
     }
+    /// <summary>
+    /// POST /activity-types
+    /// Añade un nuevo tipo de actividad en 4VGym.
+    /// </summary>
+    /// <param name="activityType">ObjetoActivityType enviado en el cuerpo de la petición (JSON).</param>
+    [HttpPost]
+    [ProducesResponseType(typeof(ActivityType), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status400BadRequest)]
+    public ActionResult<ActivityType> CreateActivityType([FromBody] ActivityType activityType)
+    {
+        try
+        {
+            // 1. Validación básica de la entrada, objeto no nulo y obligatorio nombre de actividad
+            // Esto se llaman condiciones de barrera!!!
+            if (activityType == null)
+            {
+                return BadRequest(new ErrorResponse(3, "Invalid activity type data"));
+            }
+            if (activityType.Name == null)
+            {
+                return BadRequest(new ErrorResponse(4, "The name of the activity is mandatory"));
+            }
+            // No puede haber tipos de actividad con el mismo nombre
+            if (_repository.GetByName(activityType.Name) != null)
+            {
+                return BadRequest(new ErrorResponse(5, "The name is unique, there is already another ActivityType with the same Name"));
+            }
+
+            // 2. Insertar/Guardar el objeto usando el repositorio
+            ActivityType createdActivityType = _repository.Add(activityType);
+
+            // 3. Retornar respuesta 201 Created con la ubicación o el objeto creado
+            return StatusCode(StatusCodes.Status201Created, createdActivityType);
+
+
+        }
+        catch (Exception)
+        {
+           // return BadRequest(new ErrorResponse(1, "Any problem in the Server"));
+            return StatusCode(StatusCodes.Status500InternalServerError,
+        new ErrorResponse(1, "An internal server error occurred"));
+        }
+    }
+
+
+
+
 }

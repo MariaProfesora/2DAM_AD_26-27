@@ -1,6 +1,39 @@
-@_4VGymAPI_HostAddress = http://localhost:5117
+#@_4VGymAPI_HostAddress = http://localhost:5117
 
 GET {{_4VGymAPI_HostAddress}}/4vgymapi/
 Accept: application/json
 
 ###
+
+@_4VGymAPI_HostAddress = http://localhost:5117
+
+GET {{_4VGymAPI_HostAddress}}/activity-types
+Accept: application/json
+
+###
+
+GET {{_4VGymAPI_HostAddress}}/instructors/1
+Accept: application/json
+
+###
+
+GET {{_4VGymAPI_HostAddress}}/instructors?first_initial=m
+Accept: application/json
+
+###
+
+POST {{_4VGymAPI_HostAddress}}/activity-types
+Content-Type: application/json
+
+{
+  "name": "Zumba",
+  "number-monitors": 3
+}
+
+### Para hacer un POST de Actividades sin nombre
+POST {{_4VGymAPI_HostAddress}}/activity-types
+Content-Type: application/json
+
+{
+  "name": null
+}

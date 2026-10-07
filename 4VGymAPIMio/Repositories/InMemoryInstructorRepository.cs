@@ -86,10 +86,20 @@ namespace _4VGymAPI.Repositories
 
             return _allInstructors;
         }
-        
+
         public IEnumerable<Instructor> GetAll()
         {
             return _instructors.Values.ToList();
         }
+        public Instructor? GetById(long id)
+        {
+            _instructors.TryGetValue(id, out Instructor?  instructor);
+            return instructor;
+           // return _instructors.Values
+               // .SingleOrDefault(i => i.Id == id); // FistOrDefault mejor que Where
+        }
+
+
+
     }
 }
