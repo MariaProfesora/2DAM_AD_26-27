@@ -58,7 +58,7 @@ namespace _4VGymAPI.Controllers
         }
         // Expresiones regulares para validaciones (puedes definirlas a nivel de clase)
         private static readonly Regex SoloNumerosRegex = new Regex(@"^[0-9]+$", RegexOptions.Compiled);
-        private static readonly Regex EmailRegex = new Regex(@"^[^@\s]+@[^@\s]+\.[^@\s]+$", RegexOptions.Compiled);
+        //private static readonly Regex EmailRegex = new Regex(@"^[^@\s]+@[^@\s]+\.[^@\s]+$", RegexOptions.Compiled);
 
         [HttpPost]
         [ProducesResponseType(typeof(Instructor), StatusCodes.Status201Created)]
@@ -81,7 +81,7 @@ namespace _4VGymAPI.Controllers
                 }
 
                 // El teléfono es obligatorio en API y debe contener solo números 
-                if (string.IsNullOrWhiteSpace(instructorNew.Telefono) || !SoloNumerosRegex.IsMatch(instructorNew.Telefono))
+                if (string.IsNullOrWhiteSpace(instructorNew.Phone) || !SoloNumerosRegex.IsMatch(instructorNew.Phone))
                 {
                     return BadRequest(new ErrorResponse(4, "The telephone of the instructor is mandatory and must contain only digits"));
                 }
@@ -105,10 +105,10 @@ namespace _4VGymAPI.Controllers
                 
 
                 // LLamamos al método para añadirlo en el repositorio
-                Instructor? instructor = _repository.Add(instructorNew,out String errorMessage);
-                if (instructor==null)
+                Instructor? instructor = _repository.Add(instructorNew,out ErrorResponse? errorResponse);
+                if (errorResponse !=null)
                 {
-                    return BadRequest(new ErrorResponse(5,errorMessage));
+                    return BadRequest(errorResponse);
                 }
                 // Respuesta 201 Created con el objeto Instructor realmente creado, incluyendo el Id
                 return StatusCode(StatusCodes.Status201Created, instructor);

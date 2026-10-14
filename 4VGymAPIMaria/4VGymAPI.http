@@ -38,3 +38,16 @@ Content-Type: application/json
   "name": "clase3",
   "number-monitors" : 2
 }
+
+
+
+### Para hacer un POST de Instructornombre
+POST {{_4VGymAPI_HostAddress}}/instructors
+Content-Type: application/json
+
+{
+  "name": "maria martin",
+  "email": "miguel_goyena@cuatrovientos.org",
+  "photo_url": "https://img.magnific.com/vector-premium/imagen-perfil-avatar-hombre-aislada-fondo-imagen-profil-avatar-hombre_1293239-4841.jpg?semt=ais_hybrid&w=740&q=80",
+  "phone": "948121212"
+}
