@@ -86,7 +86,7 @@ namespace _4VGymAPI.Controllers
                     return BadRequest(new ErrorResponse(4, "The telephone of the instructor is mandatory and must contain only digits"));
                 }
 
-                // El email es obligatorio y cebe tener formato válido
+                // El email es obligatorio y debe tener formato válido
                 if (string.IsNullOrWhiteSpace(instructorNew.Email) || !EmailRegex.IsMatch(instructorNew.Email))
                 {
                     return BadRequest(new ErrorResponse(4, "The email is mandatory and must be a valid email address"));
@@ -102,19 +102,14 @@ namespace _4VGymAPI.Controllers
                     return BadRequest(new ErrorResponse(4, "The photo URL is invalid. It must start with http:// or https://"));
                 }
 
-                // Comprobación de duplicados (Email o Nombre existente, ignorando mayúsculas/minúsculas)
-                bool exists = _repository.GetAll().Any(i =>
-                    i.Email.ToLower() == instructorNew.Email.ToLower() ||
-                    i.Name.ToLower() == instructorNew.Name.ToLower());
-
-                if (exists)
-                {
-                    return BadRequest(new ErrorResponse(5, "An instructor with the same email or name already exists"));
-                }
+                
 
                 // LLamamos al método para añadirlo en el repositorio
-                Instructor instructor = _repository.Add(instructorNew);
-
+                Instructor? instructor = _repository.Add(instructorNew,out String errorMessage);
+                if (instructor==null)
+                {
+                    return BadRequest(new ErrorResponse(5,errorMessage));
+                }
                 // Respuesta 201 Created con el objeto Instructor realmente creado, incluyendo el Id
                 return StatusCode(StatusCodes.Status201Created, instructor);
             }

@@ -107,8 +107,19 @@ namespace _4VGymAPI.Repositories
                 .Where(instructor => ids.Contains(instructor.Id))
                 .ToList();
         }
-        public  Instructor Add(InstructorNew instructorNew)
+        public  Instructor? Add(InstructorNew instructorNew,out String errorMessage)
         {
+            errorMessage = "";
+            // Comprobación de duplicados (Email o Nombre existente, ignorando mayúsculas/minúsculas)
+            bool exists = _instructors.Any(instructor =>
+                instructor.Value.Email.Equals(instructorNew.Email, StringComparison.CurrentCultureIgnoreCase) ||
+                instructor.Value.Name.Equals(instructorNew.Name, StringComparison.CurrentCultureIgnoreCase));
+
+            if (exists)
+            {
+                errorMessage = "An instructor with the same email or name already exists";
+                return null;
+            }
             int nuevoId = _instructors.Max(i => i.Value.Id) + 1;
             Instructor instructor = new Instructor(nuevoId, instructorNew.Name, instructorNew.Telefono, instructorNew.Email, instructorNew.PhotoUrl, instructorNew.Phone);
             _instructors.Add(nuevoId, instructor);
