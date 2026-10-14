@@ -25,13 +25,14 @@ public class ActivityTypesController : ControllerBase
     {
         try
         {
+            
             IEnumerable<ActivityType> activityTypes = _repository.GetAll();
 
             if (activityTypes == null || activityTypes.Count() == 0)
             {
                 return BadRequest(new ErrorResponse(2, "No activity types found"));
             }
-
+            
             return Ok(activityTypes);
         }
         catch (Exception)
@@ -57,6 +58,7 @@ public class ActivityTypesController : ControllerBase
             {
                 return BadRequest(new ErrorResponse(3, "Invalid activity type data"));
             }
+            
             if (activityType.Name == null)
             {
                 return BadRequest(new ErrorResponse(4, "The name of the activity is mandatory"));
@@ -79,7 +81,7 @@ public class ActivityTypesController : ControllerBase
         {
            // return BadRequest(new ErrorResponse(1, "Any problem in the Server"));
             return StatusCode(StatusCodes.Status500InternalServerError,
-        new ErrorResponse(1, "An internal server error occurred"));
+                                new ErrorResponse(1, "An internal server error occurred"));
         }
     }
 

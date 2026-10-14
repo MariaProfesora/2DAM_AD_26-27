@@ -91,14 +91,29 @@ namespace _4VGymAPI.Repositories
         {
             return _instructors.Values.ToList();
         }
-        public Instructor? GetById(long id)
+        public Instructor? GetById(int id)
         {
             _instructors.TryGetValue(id, out Instructor?  instructor);
             return instructor;
            // return _instructors.Values
                // .SingleOrDefault(i => i.Id == id); // FistOrDefault mejor que Where
         }
+        public List<Instructor> GetByIds(List<int> ids)
+        {
+            if (ids == null || !ids.Any())
+                return new List<Instructor>();
 
+            return _instructors.Values
+                .Where(instructor => ids.Contains(instructor.Id))
+                .ToList();
+        }
+        public  Instructor Add(InstructorNew instructorNew)
+        {
+            int nuevoId = _instructors.Max(i => i.Value.Id) + 1;
+            Instructor instructor = new Instructor(nuevoId, instructorNew.Name, instructorNew.Telefono, instructorNew.Email, instructorNew.PhotoUrl, instructorNew.Phone);
+            _instructors.Add(nuevoId, instructor);
+            return instructor;
+        }
 
 
     }

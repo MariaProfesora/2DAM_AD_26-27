@@ -2,14 +2,14 @@
 
 namespace _4VGymAPI.Models
 {
-    public class NewActivityTypeDTO
+    public class ActivityTypeNew
     {
         [JsonPropertyName("name")]
         public string Name { get; set; } = string.Empty;
         [JsonPropertyName("number-monitors")]
         public int? NumberMonitors { get; set; } = 1;
-        public NewActivityTypeDTO() { }
-        public NewActivityTypeDTO(string name, int? numberMonitors)
+        public ActivityTypeNew() { }
+        public ActivityTypeNew(string name, int? numberMonitors)
         {
             Name = name;
             NumberMonitors = numberMonitors;

@@ -35,5 +35,6 @@ POST {{_4VGymAPI_HostAddress}}/activity-types
 Content-Type: application/json
 
 {
-  "name": null
+  "name": "clase3",
+  "number-monitors" : 2
 }

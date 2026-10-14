@@ -47,11 +47,16 @@ namespace _4VGymAPI.Repositories
         public ActivityType? GetByName(string name)
         {
             //return _activityTypes.SingleOrDefault(at => at.Name == name);
-            return _activityTypes.SingleOrDefault(at => string.Equals(at.Name, name, StringComparison.OrdinalIgnoreCase));
+            //return _activityTypes.SingleOrDefault(at => string.Equals(at.Name, name, StringComparison.OrdinalIgnoreCase));
             // La siguiente daría error de compilación
-           // return _activityTypes.SingleOrDefault(at => string.Equals(at.Name, name, StringComparer.CurrentCultureIgnoreCase));
-        }
+            // return _activityTypes.SingleOrDefault(at => string.Equals(at.Name, name, StringComparer.CurrentCultureIgnoreCase));
 
+            return _activityTypes.SingleOrDefault(at => at.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase));
+        }
+        public ActivityType? GetById(int id)
+        {
+            return _activityTypes.SingleOrDefault(i => i.Id == id);
+        }
 
     }
 }
