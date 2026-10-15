@@ -58,13 +58,13 @@ namespace _4VGymAPI.Controllers
         }
         // Expresiones regulares para validaciones (puedes definirlas a nivel de clase)
         private static readonly Regex SoloNumerosRegex = new Regex(@"^[0-9]+$", RegexOptions.Compiled);
-        //private static readonly Regex EmailRegex = new Regex(@"^[^@\s]+@[^@\s]+\.[^@\s]+$", RegexOptions.Compiled);
+        private static readonly Regex EmailRegex = new Regex(@"^[^@\s]+@[^@\s]+\.[^@\s]+$", RegexOptions.Compiled);
 
         [HttpPost]
         [ProducesResponseType(typeof(Instructor), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
-        public ActionResult<Instructor> CreateInstructor([FromBody] InstructorNew instructorNew)
+        public IActionResult CreateInstructor([FromBody] InstructorNew instructorNew)
         {
             try
             {
