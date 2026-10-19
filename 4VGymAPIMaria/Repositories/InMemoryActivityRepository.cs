@@ -29,14 +29,23 @@ namespace _4VGymAPI.Repositories
             {
                 errorResponse.Add(new ErrorResponse(34, "EL tipo de actividad debe de funcionar"));
             }
+
             // Validacion 2: Que existan todos los monitores
-            foreach (int instuctorId in activity.InstuctorsId)
+            //foreach (int instuctorId in activity.InstructorsId)
+            //{
+            //    if (_repositoryInstructor.GetById(instuctorId) == null)
+            //    {
+            //        errorResponse.Add(new ErrorResponse(35, "El instructor: "+ instuctorId + " no existe"));
+            //    }
+            //}
+            var missingInstructors = activity.InstuctorsId
+                                   .Where(instructorId => _repositoryInstructor.GetById(instructorId) == null);
+
+            foreach (var instructorId in missingInstructors)
             {
-                if (_repositoryInstructor.GetById(instuctorId) == null)
-                {
-                    errorResponse.Add(new ErrorResponse(35, "El instructor: "+ instuctorId + " no existe"));
-                }
+                errorResponse.Add(new ErrorResponse(35, $"El instructor: {instructorId} no existe"));
             }
+
             if (errorResponse.Count > 0)
             {
                 return null;
